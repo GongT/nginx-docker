@@ -1,0 +1,12 @@
+{
+	"dependencies": {
+		"json-env-data": "*"
+	},
+	"devDependencies": {
+		"typings": "*"
+	},
+	"name": "nginx-docker",
+	"version": "0.0.0",
+	"description": "",
+	"repository": {}
+}
