@@ -15,9 +15,8 @@ build.baseImage('nginx', 'alpine');
 build.projectName(projectName);
 build.domainName(projectName + '.localdomain');
 
-build.exposePort(22, 443, 8080);
-build.forwardPort(80, 80);
-build.forwardPort(443, 443);
+build.forwardPort(80).publish(80);
+build.forwardPort(443).publish(443);
 
 build.startupCommand('nginx -c /etc/nginx/nginx.conf -g "daemon off;"');
 build.shellCommand('/bin/sh', '-c');
