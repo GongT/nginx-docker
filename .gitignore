@@ -1,3 +1,5 @@
+config/generated.d/
+
 .git/
 .idea/
 .jsonenv/

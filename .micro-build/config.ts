@@ -23,7 +23,7 @@ build.shellCommand('/bin/sh', '-c');
 build.stopCommand('nginx', '-s', 'quit');
 
 build.dependService('microservice-dnsmasq', 'http://github.com/GongT/microservice-dnsmasq.git');
-build.dockerRunArgument('--dns=${HOST_LOOP_IP}', '--tmpfs=/etc/nginx/generated.d:rw,noexec,nosuid,nodev,size=500k');
+build.dockerRunArgument('--dns=${HOST_LOOP_IP}');
 
 build.nsgLabel(ELabelNames.alias, ['nginx']);
 
