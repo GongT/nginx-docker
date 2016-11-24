@@ -1,6 +1,6 @@
 {
 	"dependencies": {
-		"json-env-data": "*"
+		"@gongt/jenv-data": "*"
 	},
 	"devDependencies": {
 		"typings": "*"

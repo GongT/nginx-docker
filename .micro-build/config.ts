@@ -18,7 +18,7 @@ build.domainName(projectName + '.localdomain');
 build.forwardPort(80).publish(80);
 build.forwardPort(443).publish(443);
 
-build.startupCommand('nginx -c /etc/nginx/nginx.conf -g "daemon off;"');
+build.startupCommand('rm -rfv /etc/nginx/generated.d/* ; nginx -c /etc/nginx/nginx.conf -g "daemon off;"');
 build.shellCommand('/bin/sh', '-c');
 build.stopCommand('nginx', '-s', 'quit');
 
@@ -34,4 +34,4 @@ build.volume('/var/log', '/host/var/log');
 build.volume('/var/run', '/host/var/run');
 
 // build.prependDockerFile('install.Dockerfile');
-// build.appendDockerFile('configure.Dockerfile');
+// build.appendDockerFile('build/configure.Dockerfile');
