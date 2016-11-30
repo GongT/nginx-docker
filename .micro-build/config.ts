@@ -20,7 +20,7 @@ build.forwardPort(443).publish(443);
 
 build.startupCommand('rm -rfv /etc/nginx/generated.d/* ; nginx -c /etc/nginx/nginx.conf -g "daemon off;"');
 build.shellCommand('/bin/sh', '-c');
-build.stopCommand('nginx', '-s', 'quit');
+build.stopCommand('./start-nginx.sh');
 
 build.dependService('microservice-dnsmasq', 'http://github.com/GongT/microservice-dnsmasq.git');
 build.dockerRunArgument('--dns=${HOST_LOOP_IP}');
