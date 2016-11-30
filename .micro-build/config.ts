@@ -9,7 +9,7 @@ declare const build: MicroBuildConfig;
  +==================================+
  */
 
-const projectName = 'nginx-docker';
+const projectName = 'nginx';
 
 build.baseImage('nginx', 'alpine');
 build.projectName(projectName);
