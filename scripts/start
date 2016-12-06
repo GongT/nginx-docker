@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if [ "yes" == "${RUN_IN_DOCKER}" ]; then
+	echo "remove cache files."
+	rm -rvf /etc/nginx/generated.d/*
+	
+	if [ ! -f /etc/nginx/nginx.conf ]; then
+		echo "place default files."
+		cp -rvf /data/config/* /etc/nginx/*
+	fi
+else
+	echo "Only run in docker." >&2
+fi
+
+echo "try start nginx server."
+
+nginx -c /etc/nginx/nginx.conf -g "daemon off;"

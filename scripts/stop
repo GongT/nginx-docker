@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo "remove cache files."
+rm -rvf /etc/nginx/generated.d/*
+
+
+echo "try stop nginx server."
+
+nginx -s stop

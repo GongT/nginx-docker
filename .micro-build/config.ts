@@ -13,24 +13,31 @@ const projectName = 'nginx';
 
 build.baseImage('nginx', 'alpine');
 build.projectName(projectName);
-build.domainName(projectName + '.localdomain');
+build.domainName(projectName + '.' + JsonEnv.baseDomainName);
 
 build.forwardPort(80).publish(80);
 build.forwardPort(443).publish(443);
 
-build.startupCommand('rm -rfv /etc/nginx/generated.d/* ; nginx -c /etc/nginx/nginx.conf -g "daemon off;"');
-build.shellCommand('/bin/sh', '-c');
-build.stopCommand('./start-nginx.sh');
+build.startupCommand('./scripts/start');
+build.shellCommand('/bin/sh');
+build.stopCommand('./scripts/stop');
 
 build.dependService('microservice-dnsmasq', 'http://github.com/GongT/microservice-dnsmasq.git');
 build.dockerRunArgument('--dns=${HOST_LOOP_IP}');
 
-build.nsgLabel(ELabelNames.alias, ['nginx']);
+build.specialLabel(ELabelNames.alias, ['nginx']);
 
 build.environmentVariable('RUN_IN_DOCKER', 'yes');
 
-build.volume('./config', '/etc/nginx');
-build.volume('/var/log', '/host/var/log');
+if (JsonEnv.isDebug) {
+	build.volume('/data/docker/nginx/config', '/etc/nginx');
+	build.volume('/data/docker/nginx/letsencrypt', '/etc/letsencrypt');
+	build.volume('/data/docker/nginx/log', '/host/var/log');
+}else{
+	build.volume('./config', '/etc/nginx');
+	build.volume('./letsencrypt', '/etc/letsencrypt');
+	build.volume('/var/log', '/host/var/log');
+}
 build.volume('/var/run', '/host/var/run');
 
 // build.prependDockerFile('install.Dockerfile');

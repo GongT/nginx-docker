@@ -1,4 +1,5 @@
 config/generated.d/
+letsencrypt/
 
 .git/
 .idea/
