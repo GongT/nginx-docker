@@ -6,7 +6,10 @@ if [ "yes" == "${RUN_IN_DOCKER}" ]; then
 	
 	if [ ! -f /etc/nginx/nginx.conf ]; then
 		echo "place default files."
-		cp -rvf /data/config/* /etc/nginx/*
+		if [ ! -e /etc/nginx ]; then
+			mkdir -p /etc/nginx
+		fi
+		cp -rvf /data/config/* /etc/nginx/
 	fi
 else
 	echo "Only run in docker." >&2
