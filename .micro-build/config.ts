@@ -30,13 +30,13 @@ build.specialLabel(ELabelNames.alias, ['nginx']);
 build.environmentVariable('RUN_IN_DOCKER', 'yes');
 
 if (JsonEnv.isDebug) {
-	build.volume('/data/docker/nginx/config', '/etc/nginx');
-	build.volume('/data/docker/nginx/letsencrypt', '/etc/letsencrypt');
-	build.volume('/data/docker/nginx/log', '/host/var/log');
-}else{
 	build.volume('./config', '/etc/nginx');
 	build.volume('./letsencrypt', '/etc/letsencrypt');
 	build.volume('/var/log', '/host/var/log');
+}else{
+	build.volume('/data/docker/nginx/config', '/etc/nginx');
+	build.volume('/data/docker/nginx/letsencrypt', '/etc/letsencrypt');
+	build.volume('/data/docker/nginx/log', '/host/var/log');
 }
 build.volume('/var/run', '/host/var/run');
 
