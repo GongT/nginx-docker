@@ -31,11 +31,12 @@ build.environmentVariable('RUN_IN_DOCKER', 'yes');
 
 if (JsonEnv.isDebug) {
 	build.volume('./config', '/etc/nginx');
+	build.volume('./letsencrypt', '/etc/letsencrypt');
 } else {
 	build.volume('/etc/nginx', '/etc/nginx');
+	build.volume('/etc/letsencrypt', '/etc/letsencrypt');
 }
 
-build.volume('./letsencrypt', '/etc/letsencrypt');
 build.volume('/var/log', '/host/var/log');
 build.volume('./certbot-root', '/data/certbot');
 build.volume('/var/run', '/host/var/run');
