@@ -33,10 +33,12 @@ if (JsonEnv.isDebug) {
 	build.volume('./config', '/etc/nginx');
 	build.volume('./letsencrypt', '/etc/letsencrypt');
 	build.volume('/var/log', '/host/var/log');
+	build.volume('./certbot-root', '/data/certbot');
 }else{
 	build.volume('/data/docker/nginx/config', '/etc/nginx');
 	build.volume('/data/docker/nginx/letsencrypt', '/etc/letsencrypt');
 	build.volume('/data/docker/nginx/log', '/host/var/log');
+	build.volume('/data/docker/nginx/certbot-root', '/data/certbot');
 }
 build.volume('/var/run', '/host/var/run');
 
