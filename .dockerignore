@@ -1,3 +1,43 @@
+### START MICRO-BUILD SECTION >>>
+# DO NOT EDIT THIS BY HAND
+.*
+.tgz
+node_modules
+jspm_packages
+**/node_modules
+**/jspm_packages
+*.log
+npm-debug.log*
+coverage/
+typings/
+*.md
+Dockerfile
+*.Dockerfile
+!.micro-build/json-env-data.json
+!.jsonenv/_current_result.json.d.ts
+!.micro-build/npm-install
+!.micro-build/bin
+!.micro-build/package-json
+!.micro-build/jspm-install
+### <<< END MICRO-BUILD SECTION
+
+### START MICRO-BUILD SECTION >>> 
+# DO NOT EDIT THIS BY HAND
+.*
+node_modules/
+jspm_packages/
+*.log
+npm-debug.log*
+coverage/
+!.micro-build/config.ts
+*.md
+!.micro-build/json-env-data.json
+!.jsonenv/_current_result.json.d.ts
+!.micro-build/npm-install
+!.micro-build/package-json
+!.micro-build/jspm-install
+### <<< END MICRO-BUILD SECTION
+
 .git/
 .idea/
 .jsonenv/
@@ -22,3 +62,6 @@ typings/
 letsencrypt/
 certbot-root/
 config/generated.d/
+.micro-build
+!.micro-build/*/
+!.micro-build/json-env-data.json

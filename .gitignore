@@ -1,3 +1,33 @@
+### START MICRO-BUILD SECTION >>>
+# DO NOT EDIT THIS BY HAND
+.*
+.tgz
+node_modules
+jspm_packages
+**/node_modules
+**/jspm_packages
+*.log
+npm-debug.log*
+coverage/
+typings/
+!.micro-build
+.micro-build/*
+!.micro-build/config.ts
+!.*ignore
+### <<< END MICRO-BUILD SECTION
+
+### START MICRO-BUILD SECTION >>> 
+# DO NOT EDIT THIS BY HAND
+.*
+node_modules/
+jspm_packages/
+*.log
+npm-debug.log*
+coverage/
+!.micro-build/config.ts
+!.*ignore
+### <<< END MICRO-BUILD SECTION
+
 config/generated.d/
 letsencrypt/
 certbot-root/
