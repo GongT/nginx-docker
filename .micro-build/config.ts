@@ -1,4 +1,4 @@
-import {MicroBuildConfig, ELabelNames} from "./x/microbuild-config";
+import {MicroBuildConfig, ELabelNames, EPlugins} from "./x/microbuild-config";
 declare const build: MicroBuildConfig;
 /*
  +==================================+
@@ -43,3 +43,4 @@ build.volume('/var/run', '/host/var/run');
 
 // build.prependDockerFile('install.Dockerfile');
 // build.appendDockerFile('build/configure.Dockerfile');
+build.disablePlugin(EPlugins.jenv);
