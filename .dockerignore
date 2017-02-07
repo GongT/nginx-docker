@@ -1,7 +1,7 @@
 ### START MICRO-BUILD SECTION >>>
 # DO NOT EDIT THIS BY HAND
 .*
-.tgz
+*.tgz
 node_modules
 jspm_packages
 **/node_modules
@@ -9,7 +9,7 @@ jspm_packages
 *.log
 npm-debug.log*
 coverage/
-typings/
+typings
 *.md
 Dockerfile
 *.Dockerfile
@@ -19,6 +19,10 @@ Dockerfile
 !.micro-build/bin
 !.micro-build/package-json
 !.micro-build/jspm-install
+!.micro-build/plugins
+config
+letsencrypt
+certbot-root
 ### <<< END MICRO-BUILD SECTION
 
 letsencrypt/
