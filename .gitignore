@@ -14,11 +14,10 @@ typings
 .micro-build/*
 !.micro-build/config.ts
 !.*ignore
-config
+!.gitinclude
 letsencrypt
 certbot-root
 ### <<< END MICRO-BUILD SECTION
 
 config/generated.d/
-letsencrypt/
-certbot-root/
+config/conf.d/generated.conf

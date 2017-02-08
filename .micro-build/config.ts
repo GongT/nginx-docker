@@ -30,18 +30,14 @@ build.dockerRunArgument('--dns=${HOST_LOOP_IP}');
 
 build.specialLabel(ELabelNames.alias, ['nginx']);
 
-build.environmentVariable('RUN_IN_DOCKER', 'yes');
+build.noDataCopy();
+build.appendDockerFileContent('COPY scripts /data/scripts');
 
-if (JsonEnv.isDebug) {
-	build.volume('./config', '/etc/nginx');
-	build.volume('./letsencrypt', '/etc/letsencrypt');
-} else {
-	build.volume('/etc/nginx', '/etc/nginx');
-	build.volume('/etc/letsencrypt', '/etc/letsencrypt');
-}
+build.volume('./config', '/data/config');
+build.volume('./letsencrypt', '/data/letsencrypt');
+build.volume('./certbot-root', '/data/certbot-root');
 
 build.volume('/var/log', '/host/var/log');
-build.volume('./certbot-root', '/data/certbot');
 build.volume('/var/run', '/host/var/run');
 
 // build.prependDockerFile('install.Dockerfile');

@@ -2,20 +2,12 @@
 
 if [ "yes" == "${RUN_IN_DOCKER}" ]; then
 	echo "remove cache files."
-	rm -vf  /etc/nginx/conf.d/generated.conf
-	rm -rvf /etc/nginx/generated.d/*
-	
-	if [ ! -f /etc/nginx/nginx.conf ]; then
-		echo "place default files."
-		if [ ! -e /etc/nginx ]; then
-			mkdir -p /etc/nginx
-		fi
-		cp -rvf /data/config/* /etc/nginx/
-	fi
+	rm -vf  /data/config/conf.d/generated.conf
+	rm -rvf /data/config/generated.d/*
 else
-	echo "Only run in docker." >&2
+	echo "remove cache only run in docker." >&2
 fi
 
 echo "try start nginx server."
 
-nginx -c /etc/nginx/nginx.conf -g "daemon off;"
+nginx -c `pwd`/config/nginx.conf -g "daemon off;"
