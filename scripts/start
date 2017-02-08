@@ -2,6 +2,7 @@
 
 if [ "yes" == "${RUN_IN_DOCKER}" ]; then
 	echo "remove cache files."
+	rm -vf  /etc/nginx/conf.d/generated.conf
 	rm -rvf /etc/nginx/generated.d/*
 	
 	if [ ! -f /etc/nginx/nginx.conf ]; then
