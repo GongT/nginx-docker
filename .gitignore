@@ -10,11 +10,8 @@ jspm_packages
 npm-debug.log*
 coverage/
 typings
-!.micro-build
-.micro-build/*
-!.micro-build/config.ts
 !.*ignore
-!.gitinclude
+config
 letsencrypt
 certbot-root
 ### <<< END MICRO-BUILD SECTION
