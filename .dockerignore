@@ -20,7 +20,7 @@ Dockerfile
 !.micro-build/package-json
 !.micro-build/jspm-install
 !.micro-build/plugins
+config
 letsencrypt
 certbot-root
-config
 ### <<< END MICRO-BUILD SECTION
