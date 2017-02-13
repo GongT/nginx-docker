@@ -26,7 +26,7 @@ build.shellCommand('/bin/sh');
 build.stopCommand('./scripts/stop');
 
 build.dependService('microservice-dnsmasq', 'http://github.com/GongT/microservice-dnsmasq.git');
-build.dockerRunArgument('--dns=${HOST_LOOP_IP}');
+build.dockerRunArgument('--dns=${HOST_LOOP_IP}', '--cap-add=SYS_ADMIN');
 
 build.specialLabel(ELabelNames.alias, ['nginx']);
 

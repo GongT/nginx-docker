@@ -4,6 +4,11 @@ if [ "yes" == "${RUN_IN_DOCKER}" ]; then
 	echo "remove cache files."
 	rm -vf  /data/config/conf.d/generated.conf
 	rm -rvf /data/config/generated.d/*
+	
+	if ! readlink /etc/nginx ; then
+		rm -rvf /etc/nginx
+		ln -s /data/config /etc/nginx
+	fi
 else
 	echo "remove cache only run in docker." >&2
 fi
