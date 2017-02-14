@@ -9,6 +9,8 @@ if [ "yes" == "${RUN_IN_DOCKER}" ]; then
 		rm -rvf /etc/nginx
 		ln -s /data/config /etc/nginx
 	fi
+	
+	update-resolve
 else
 	echo "remove cache only run in docker." >&2
 fi

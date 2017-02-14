@@ -11,7 +11,7 @@ npm-debug.log*
 coverage/
 typings
 !.*ignore
-config
+!.gitinclude
 letsencrypt
 certbot-root
 ### <<< END MICRO-BUILD SECTION

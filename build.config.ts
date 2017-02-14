@@ -21,6 +21,8 @@ build.domainName(projectName + '.' + JsonEnv.baseDomainName);
 build.forwardPort(80).publish(80);
 build.forwardPort(443).publish(443);
 
+build.forceLocalDns();
+
 build.startupCommand('./scripts/start');
 build.shellCommand('/bin/sh');
 build.stopCommand('./scripts/stop');
