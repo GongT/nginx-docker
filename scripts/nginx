@@ -1,1 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/sh
+
+# this file only run in docker
+cd /data
+/usr/sbin/nginx -c `pwd`/config/nginx.conf "$@"

@@ -5,13 +5,6 @@ if [ "yes" == "${RUN_IN_DOCKER}" ]; then
 	\rm -vf  /data/config/conf.d/generated.conf
 	\rm -rvf /data/config/generated.d/*
 	
-	if [ -e /etc/nginx ]; then
-		if ! readlink /etc/nginx ; then
-			\mv /etc/nginx /etc/nginx_old
-			ln -s /data/config /etc/nginx
-		fi
-	fi
-	
 	update-resolve
 else
 	echo "remove cache only run in docker." >&2
@@ -19,4 +12,4 @@ fi
 
 echo "try start nginx server."
 
-exec nginx -c `pwd`/config/nginx.conf -g "daemon off;"
+exec nginx -g "daemon off;"
