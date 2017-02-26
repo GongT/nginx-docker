@@ -45,4 +45,4 @@ build.volume('/var/run', '/host/var/run');
 // build.prependDockerFile('install.Dockerfile');
 // build.appendDockerFile('build/configure.Dockerfile');
 build.disablePlugin(EPlugins.jenv);
-build.prependDockerFileContent('RUN rm -rf /etc/nginx');
+build.prependDockerFileContent('RUN rm -rf /etc/nginx && ln -s /data/config /etc/nginx');
