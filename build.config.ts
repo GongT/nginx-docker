@@ -41,6 +41,7 @@ build.volume('./certbot-root', '/data/certbot-root');
 
 build.volume('/var/log', '/host/var/log');
 build.volume('/var/run', '/host/var/run');
+build.volume('/data', '/host/data:ro');
 
 // build.prependDockerFile('install.Dockerfile');
 // build.appendDockerFile('build/configure.Dockerfile');
