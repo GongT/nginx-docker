@@ -21,6 +21,11 @@ build.domainName(projectName + '.' + JsonEnv.baseDomainName);
 build.forwardPort(80).publish(80);
 build.forwardPort(443).publish(443);
 
+// temp
+build.forwardPort(JsonEnv.mCotton.mqttRegisterPort).publish(JsonEnv.mCotton.mqttRegisterPort);
+build.forwardPort(JsonEnv.mCotton.mqttMessagePort).publish(JsonEnv.mCotton.mqttMessagePort);
+// temp
+
 build.forceLocalDns();
 
 build.startupCommand('./scripts/start');
