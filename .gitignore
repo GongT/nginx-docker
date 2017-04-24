@@ -16,5 +16,9 @@ letsencrypt
 certbot-root
 ### <<< END MICRO-BUILD SECTION
 
+config/other-sites.d/
+config/vhost.d/
+config/servers.d/
 config/generated.d/
+
 config/conf.d/generated.conf
