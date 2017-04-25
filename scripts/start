@@ -4,6 +4,7 @@ if [ "yes" == "${RUN_IN_DOCKER}" ]; then
 	echo "remove cache files."
 	\rm -vf  /data/config/conf.d/generated.conf
 	\rm -rvf /data/config/generated.d/*
+	\rm -rvf /data/config/servers.d/*
 	
 	update-resolve
 else
