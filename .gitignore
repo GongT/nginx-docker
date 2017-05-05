@@ -17,6 +17,7 @@ certbot-root
 ### <<< END MICRO-BUILD SECTION
 
 config/other-sites.d/
+config/other-config.d/
 config/vhost.d/
 config/servers.d/
 config/generated.d/

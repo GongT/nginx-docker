@@ -48,7 +48,5 @@ build.volume('/var/log', '/host/var/log');
 build.volume('/var/run', '/host/var/run');
 build.volume('/data', '/host/data:ro');
 
-// build.prependDockerFile('install.Dockerfile');
-// build.appendDockerFile('build/configure.Dockerfile');
 build.disablePlugin(EPlugins.jenv);
 build.prependDockerFileContent('RUN rm -rf /etc/nginx && ln -s /data/config /etc/nginx');
