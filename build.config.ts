@@ -1,5 +1,5 @@
 import {MicroBuildHelper} from "./.micro-build/x/microbuild-helper";
-import {MicroBuildConfig, ELabelNames, EPlugins} from "./.micro-build/x/microbuild-config";
+import {ELabelNames, EPlugins, MicroBuildConfig} from "./.micro-build/x/microbuild-config";
 import {JsonEnv} from "./.jsonenv/_current_result";
 declare const build: MicroBuildConfig;
 declare const helper: MicroBuildHelper;
@@ -18,12 +18,12 @@ build.baseImage('nginx', 'alpine');
 build.projectName(projectName);
 build.domainName(projectName + '.' + JsonEnv.baseDomainName);
 
-build.forwardPort(80).publish(80);
-build.forwardPort(443).publish(443);
+build.forwardPort(81).publish(80);
+build.forwardPort(443).publish(443); // no need export if no gateway
 
 // temp
-build.forwardPort(JsonEnv.mCotton.mqttRegisterPort).publish(JsonEnv.mCotton.mqttRegisterPort);
-build.forwardPort(JsonEnv.mCotton.mqttMessagePort).publish(JsonEnv.mCotton.mqttMessagePort);
+build.forwardPort(JsonEnv.mCotton.mqttRegisterPort + 1).publish(JsonEnv.mCotton.mqttRegisterPort);
+build.forwardPort(JsonEnv.mCotton.mqttMessagePort + 1).publish(JsonEnv.mCotton.mqttMessagePort);
 // temp
 
 build.forceLocalDns();
