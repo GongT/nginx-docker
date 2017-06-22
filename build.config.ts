@@ -18,6 +18,15 @@ build.baseImage('nginx', 'alpine');
 build.projectName(projectName);
 build.domainName(projectName + '.' + JsonEnv.baseDomainName);
 
+build.isInChina(JsonEnv.gfw.isInChina, JsonEnv.gfw);
+build.systemInstall(
+	'nginx-mod-http-echo',
+	'nginx-mod-http-image-filter',
+	'nginx-mod-http-fancyindex',
+	'nginx-mod-http-headers-more',
+	'nginx-mod-stream',
+);
+
 build.forwardPort(80);
 build.forwardPort(81).publish(80);
 build.forwardPort(443).publish(443); // no need export if no gateway
@@ -52,4 +61,9 @@ build.volume('/var/run', '/host/var/run');
 build.volume('/data', '/host/data:ro');
 
 build.disablePlugin(EPlugins.jenv);
-build.prependDockerFileContent('RUN rm -rf /etc/nginx && ln -s /data/config /etc/nginx');
+
+build.appendDockerFileContent(`RUN \
+	mv /etc/nginx/modules/ /usr/local/ \
+	&& rm -rf /etc/nginx \
+	&& ln -s /data/config /etc/nginx
+`);
