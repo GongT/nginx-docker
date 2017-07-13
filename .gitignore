@@ -23,4 +23,4 @@ config/other-config.d/
 config/vhost.d/
 config/generated.d/
 
-config/conf.d/generate.conf
+config/conf.d/generated.conf
