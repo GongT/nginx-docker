@@ -20,6 +20,7 @@ build.domainName(projectName + '.' + JsonEnv.baseDomainName);
 
 build.isInChina(JsonEnv.gfw.isInChina, JsonEnv.gfw);
 build.systemInstall(
+	'nginx-mod-http-lua',
 	'nginx-mod-http-echo',
 	'nginx-mod-http-image-filter',
 	'nginx-mod-http-fancyindex',
