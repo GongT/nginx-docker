@@ -1,6 +1,6 @@
-import {MicroBuildHelper} from "./.micro-build/x/microbuild-helper";
-import {MicroBuildConfig, ELabelNames, EPlugins} from "./.micro-build/x/microbuild-config";
 import {JsonEnv} from "./.jsonenv/_current_result";
+import {ELabelNames, EPlugins, MicroBuildConfig} from "./.micro-build/x/microbuild-config";
+import {MicroBuildHelper} from "./.micro-build/x/microbuild-helper";
 declare const build: MicroBuildConfig;
 declare const helper: MicroBuildHelper;
 /*
@@ -39,7 +39,7 @@ build.forwardPort(JsonEnv.mCotton.mqttMessagePort);
 build.forwardPort(JsonEnv.mCotton.mqttMessagePort + 1).publish(JsonEnv.mCotton.mqttMessagePort);
 // temp
 
-build.forceLocalDns();
+build.forceLocalDns(false, true);
 
 build.startupCommand('./scripts/start');
 build.shellCommand('/bin/sh');
