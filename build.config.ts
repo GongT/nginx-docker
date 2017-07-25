@@ -33,13 +33,6 @@ build.forwardPort(80);
 build.forwardPort(81).publish(80);
 build.forwardPort(443).publish(443); // no need export if no gateway
 
-// temp
-build.forwardPort(JsonEnv.mCotton.mqttRegisterPort);
-build.forwardPort(JsonEnv.mCotton.mqttRegisterPort + 1).publish(JsonEnv.mCotton.mqttRegisterPort);
-build.forwardPort(JsonEnv.mCotton.mqttMessagePort);
-build.forwardPort(JsonEnv.mCotton.mqttMessagePort + 1).publish(JsonEnv.mCotton.mqttMessagePort);
-// temp
-
 build.forceLocalDns(false, true);
 
 build.startupCommand('./scripts/start');
@@ -70,15 +63,24 @@ build.appendDockerFileContent(`RUN \
 	&& ln -s /data/config /etc/nginx
 `);
 
-const fs = require('fs');
-const target = __dirname + '/RUN_AFTER.sh';
-const exists = fs.existsSync(target);
+let postRun = '';
+if (JsonEnv.services && JsonEnv.services.nginx) {
+	if (JsonEnv.services.nginx.ports) {
+		for (const port of JsonEnv.services.nginx.ports) {
+			build.forwardPort(port);
+			build.forwardPort(port + 1).publish(port);
+		}
+	}
+	if (JsonEnv.services.nginx.postRun) {
+		postRun = JsonEnv.services.nginx.postRun;
+	}
+}
 
 build.systemd({
 	type: 'simple',
 	watchdog: 0,
 	startTimeout: 10,
 	commands: {
-		postStart: exists? `source "${target}"` : '',
+		postStart: postRun,
 	},
 });
