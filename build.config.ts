@@ -1,11 +1,12 @@
-import {JsonEnv} from "./.jsonenv/_current_result";
-import {ELabelNames, EPlugins, MicroBuildConfig} from "./.micro-build/x/microbuild-config";
+/// <reference path="./.jsonenv/_current_result.json.d.ts"/>
+import {JsonEnv} from "@gongt/jenv-data";
+import {EPlugins, MicroBuildConfig} from "./.micro-build/x/microbuild-config";
 import {MicroBuildHelper} from "./.micro-build/x/microbuild-helper";
 declare const build: MicroBuildConfig;
 declare const helper: MicroBuildHelper;
 /*
  +==================================+
- | <**DON'T EDIT ABOVE THIS LINE**> |
+ |  **DON'T EDIT ABOVE THIS LINE**  |
  | THIS IS A PLAIN JAVASCRIPT FILE  |
  |   NOT A TYPESCRIPT OR ES6 FILE   |
  |    ES6 FEATURES NOT AVAILABLE    |
@@ -68,3 +69,16 @@ build.appendDockerFileContent(`RUN \
 	&& rm -rf /etc/nginx \
 	&& ln -s /data/config /etc/nginx
 `);
+
+const fs = require('fs');
+const target = __dirname + '/RUN_AFTER.sh';
+const exists = fs.existsSync(target);
+
+build.systemd({
+	type: 'simple',
+	watchdog: 0,
+	startTimeout: 10,
+	commands: {
+		postStart: exists? `source "${target}"` : '',
+	},
+});
