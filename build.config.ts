@@ -58,9 +58,10 @@ build.volume('/data', '/host/data:ro');
 build.disablePlugin(EPlugins.jenv);
 
 build.appendDockerFileContent(`RUN \
-	mv /etc/nginx/modules/ /usr/local/ \
-	&& rm -rf /etc/nginx \
-	&& ln -s /data/config /etc/nginx
+mv /etc/nginx/modules/ /usr/local/ && \
+rm -rf /etc/nginx && \
+ln -s /data/config /etc/nginx && \
+ln -s /data/letsencrypt /etc
 `);
 
 let postRun = '';
