@@ -16,6 +16,7 @@ package-lock.json
 !.gitinclude
 letsencrypt
 certbot-root
+config/global-debug-body.conf
 ### <<< END MICRO-BUILD SECTION
 
 config/other-sites.d/

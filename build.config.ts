@@ -85,3 +85,29 @@ build.systemd({
 		postStart: postRun,
 	},
 });
+
+build.onConfig((isBuild) => {
+	const host = require('os').hostname();
+	//language=TEXT
+	const text = `proxy_set_header X-Proxy-Path "\${http_x_proxy_path}${host}->";
+
+header_filter_by_lua_block {
+	if not ngx.header["X-Proxy-Path"] then
+		local reqRoutePath = ngx.req.get_headers()["X-Proxy-Path"];
+		if reqRoutePath then
+			ngx.header["X-Proxy-Path"] = reqRoutePath .. "${host}"
+		else
+			ngx.header["X-Proxy-Path"] = "${host}"
+		end
+	end
+}
+access_by_lua_block {
+	local reqRoutePath = ngx.req.get_headers()["X-Proxy-Path"];
+	if reqRoutePath and string.find(reqRoutePath, "${host}") then
+		ngx.say("<h1>Server Error: Loop Detected</h1><p>" .. reqRoutePath .. "</p>")
+		ngx.exit(ngx.HTTP_SERVICE_UNAVAILABLE)
+	end
+}`;
+	helper.createTextFile(text).save('./config/global-debug-body.conf');
+});
+
