@@ -65,15 +65,15 @@ ln -s /data/letsencrypt /etc
 `);
 
 let postRun = '';
-if (JsonEnv.services && JsonEnv.services.nginx) {
-	if (JsonEnv.services.nginx.ports) {
-		for (const port of JsonEnv.services.nginx.ports) {
+if (JsonEnv && JsonEnv.nginx) {
+	if (JsonEnv.nginx.ports) {
+		for (const port of JsonEnv.nginx.ports) {
 			build.forwardPort(port);
 			build.forwardPort(port + 1).publish(port);
 		}
 	}
-	if (JsonEnv.services.nginx.postRun) {
-		postRun = JsonEnv.services.nginx.postRun;
+	if (JsonEnv.nginx.postRun) {
+		postRun = JsonEnv.nginx.postRun;
 	}
 }
 
