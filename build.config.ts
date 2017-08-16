@@ -68,8 +68,10 @@ let postRun = '';
 if (JsonEnv && JsonEnv.nginx) {
 	if (JsonEnv.nginx.ports) {
 		for (const port of JsonEnv.nginx.ports) {
-			build.forwardPort(port);
-			build.forwardPort(port + 1).publish(port);
+			build.forwardPort(port, 'tcp');
+			build.forwardPort(port, 'udp');
+			build.forwardPort(port + 1, 'tcp').publish(port);
+			build.forwardPort(port + 1, 'udp').publish(port);
 		}
 	}
 	if (JsonEnv.nginx.postRun) {

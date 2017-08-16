@@ -14,6 +14,7 @@ screen.*
 package-lock.json
 !.*ignore
 !.gitinclude
+!.babelrc
 letsencrypt
 certbot-root
 config/global-debug-body.conf
