@@ -51,8 +51,6 @@ build.volume('./config', '/data/config');
 build.volume('./letsencrypt', '/data/letsencrypt');
 build.volume('./certbot-root', '/data/certbot-root');
 
-build.volume('/var/log', '/host/var/log');
-build.volume('/var/run', '/host/var/run');
 build.volume('/data', '/host/data:ro');
 
 build.disablePlugin(EPlugins.jenv);

@@ -1,6 +1,6 @@
 uninitialized_variable_warn off;
 if ($cgi_document_root = '') {
-    set $cgi_document_root /host$document_root;
+    set $cgi_document_root $document_root;
 }
 
 fastcgi_param  QUERY_STRING       $query_string;
@@ -15,6 +15,7 @@ fastcgi_param  SCRIPT_NAME        $fastcgi_script_name;
 fastcgi_param  PHP_SELF           $fastcgi_script_name;
 fastcgi_param  REQUEST_URI        $request_uri;
 fastcgi_param  DOCUMENT_URI       $document_uri;
+fastcgi_param  DOCUMENT_ROOT      $cgi_document_root;
 fastcgi_param  DOCUMENT_ROOT      $cgi_document_root;
 
 fastcgi_param  SERVER_PROTOCOL    $server_protocol;
